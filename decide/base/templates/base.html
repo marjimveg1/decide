@@ -2,36 +2,55 @@
 <html lang='es'>
 	<head>
 		<meta charset="utf-8">
-		<h1>DECIDE - SUBSISTEMA DE VISUALIZACIÓN</h1>
-		<style>
-			{% block style_css %}{% endblock %}
-		</style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+
 	</head>
 	<body>
 		<header>
 			{% block encabezado %}{% endblock %}
-			<nav>
-				<ul>
-                    <li><a href='/inicio'>Inicio</a></li>
-                    <li><a href='/todasVotaciones'>Ver todas las votaciones</a></li>
-			        <li><a href='/votacion'>Ver una votación</a></li>
-                    <li>------------------------------</li>
+			<br>
+			<div class="p-3 mb-2 bg-success text-white">
+            <div class="nav justify-content-center">
+				<h1>DECIDE - SUBSISTEMA DE VISUALIZACIÓN</h1>
+			</div></div>
+			<div class="p-3 mb-2 bg-light">
+            <div class="nav justify-content-center">
+				<ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href='/visualizer/inicio'>Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href='/visualizer/todasVotaciones'>Ver todas las votaciones</a></li>
+			        <li class="nav-item"><a class="nav-link" href='/visualizer/votacion'>Ver una votación</a></li>
+
                     {% if user.is_authenticated %}
-                    <li><a href='/logout'>Log out</a></li>
+                    <li class="nav-item"><a class="nav-link" href='/logout'>Log out</a></li>
 
                     {% else %}
-                    <li><a href='/login'>Login</a></li>
-                    <li><a href='/signup'>Signup</a></li>
+                    <li class="nav-item"><a class="nav-link" href='/login'>Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href='/signup'>Signup</a></li>
                     {% endif %}
 
 				</ul>
-			</nav>
-			<hr>
+			</div></div>
 		</header>
+		<br>
+
+
+		<div class="nav justify-content-center">
 		<section class='contenido'>
 			{% block contenido %}{% endblock %}
 		</section>
-		<footer>
+		</div>
+
+
+
+		<br>
+		<br>
+		<br>
+		<footer class="nav justify-content-center" >
 			<p>Proyecto para la Universidad de Sevilla - Decide, subsistema de visualización</p>
 		</footer>
 	</body>
