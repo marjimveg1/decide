@@ -2,19 +2,52 @@
 {% load i18n static %}
 
 {% block content %}
-    <h1>{{ voting.id }} - {{ voting.name }}</h1>
+    <h1>{{ votacion.id }} - {{ votacion.name }}</h1>
 
-    {% if not voting.start_date %}
-        <h2>{% trans 'Voting not started' %}</h2>
-    {% elif not voting.end_date %}
-        <h2>{% trans 'Voting is opened' %}</h2>
-    {% else %}
-        <h2>{% trans 'Results: ' %}</h2>
-        <ul>
-            {% for option in voting.postproc %}
-                <li>{{option.option}}: {{option.postproc}} <span>({{option.votes}})</span></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+
+
+<div id='Descripcion'>
+    	<strong>Descripcion: </strong>{{ votacion.desc}}
+</div>
+
+<div id='Pregunta'>
+    	<strong>Pregunta: </strong>{{ votacion.question.desc}}<br>
+    <strong>Opciones: </strong>
+    <ul>
+	{% for option in votacion.question.options%}
+<li type="circle">{{ option.number}},{{ option.option}} </li>
+        		{% endfor %}
+    </ul>
+</div>
+
+<div id='star_date'>
+    	<strong>Fecha de inicio: </strong>{{ votacion.start_date|slice:":10" }} {{ votacion.start_date|slice:"11:19" }}
+</div>
+
+<div id='end_date'>
+    	<strong>Fecha de fin: </strong> {{ votacion.end_date|slice:":10" }} {{ votacion.end_date|slice:"11:19" }}
+</div>
+
+<div id='pub_key'>
+    	<strong>Clave publica: </strong>{{ votacion.pub_key}}
+</div>
+
+<div id='auths'>
+    	<strong>Auths: </strong>
+    <ul>
+    {% for auth in votacion.auths%}
+   <li type="circle"> {{ auth.name}}, {{auth.url}}</li>
+    {% endfor %}
+         </ul>
+</div>
+
+<div id='tally'>
+    	<strong>Tally: </strong>{{ votacion.tally}}
+</div>
+
+<div id='postproc'>
+    	<strong>Postproc: </strong>{{ votacion.postproc}}
+</div>
+
 
 {% endblock %}
