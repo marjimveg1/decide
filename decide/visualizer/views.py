@@ -41,4 +41,14 @@ class VisualizerTodasVotaciones(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        try:
+            todasVotaciones = mods.get('voting')
+            context['votaciones'] = todasVotaciones
+
+
+        except:
+            raise Http404
+
         return context
+

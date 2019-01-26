@@ -2,9 +2,49 @@
 {% load i18n static %}
 
 {% block content %}
-<div>
-    <h1> Estamos visualizando todas las votaciones!</h1	>
-</div>
+
+<h2>Lista de todas las votaciones</h2>
+	<br>
+<head>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+
+
+
+<br>
+
+<table>
+	<thead>
+		<tr>
+			<td><strong>Identificador</strong></td>
+			<td><strong>Nombre</strong></td>
+			<td><strong>Fecha de inicio</strong></td>
+            <td><strong>Fecha de fin</strong></td>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for votacion in votaciones%}
+		<tr>
+			<td>{{votacion.id}}</td>
+			<td><a href='../mostrar/{{votacion.id}}'>{{votacion.name}}</a></td>
+            <td>{{ votacion.start_date|slice:":10" }} {{ votacion.start_date|slice:"11:19" }}</td>
+             <td> {{ votacion.end_date|slice:":10" }} {{ votacion.end_date|slice:"11:19" }}</td>
+
+		{% endfor %}
+	</tbody>
+</table>
+
 
 
 {% endblock %}
