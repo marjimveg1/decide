@@ -4,17 +4,12 @@
 {% block titulo %} Inicio {% endblock %}
 
 
-{% block contenido %}
+{% block content %}
 
 
 
+<h2 align="center" > Bienvenido!</h2	>
 
-    {% if user.is_authenticated %}
-        <h1 align="center" >Bienvenido {{ user.nickName }} !</h1	>
-    {% endif %}
-     {% if not user.is_authenticated %}
-        <h1 align="center" > Bienvenido!</h1	>
-    {% endif %}
 <br/>
 	<h5 align="center" >
     Dedide es una plataforma de voto electrónico seguro.</h5> <h5 align="center" >Se trata de un proyecto educativo, pensado para el estudio de sistemas de votación.
