@@ -29,12 +29,6 @@ class VisualizerView(TemplateView):
 
         return context
 
-class VisualizerVotacion(TemplateView):
-    template_name = 'visualizer/visualizerVotacion.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
 class VisualizerTodasVotaciones(TemplateView):
     template_name = 'visualizer/visualizerTodasVotaciones.html'
