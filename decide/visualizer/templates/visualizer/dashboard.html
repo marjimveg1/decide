@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+    VOTACIONES TOTALES {{ numVotacionesTotales }}<br>
+   VOTACIONES SIN EMPEZAR {{ numVotacionesSinEmpezar }}<br>
+   VOTACIONES SIN TERMINAR {{ numVotacionesSinTerminar }}%<br>
+TANTO POR CIENDO DE VOTACIONES CERRADAS {{ tantoPorCienVotacionesCerradas }}<br>
+MEDIA DE LAS OPCIONES DE TODAS LAS PREGUNTAS DE LAS VOTACIONES {{ mediaOpciones }}<br>
+
+
+
+{% endblock %}

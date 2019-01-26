@@ -1,9 +1,8 @@
 from django.views.generic import TemplateView
-from django.conf import settings
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404, redirect
-
+from voting.models import Voting
 from base import mods
+
 
 class VisualizerIndex(TemplateView):
     template_name = 'visualizer/visualizerIndex.html'
@@ -11,7 +10,6 @@ class VisualizerIndex(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-
 
 
 class VisualizerView(TemplateView):
@@ -37,12 +35,48 @@ class VisualizerTodasVotaciones(TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
-            todasVotaciones = mods.get('voting')
+            todasVotaciones = Voting.objects.all()
             context['votaciones'] = todasVotaciones
-
 
         except:
             raise Http404
 
         return context
+
+
+class Dashboard(TemplateView):
+    template_name = 'visualizer/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            numVotacionesTotales = Voting.objects.all().count()
+            numVotacionesSinEmpezar = Voting.objects.filter(start_date=None).count()
+            numVotacionesSinTerminar = Voting.objects.filter(end_date=None).count()
+            numVotacionesSinTerminar = Voting.objects.filter(end_date=None).count()
+
+
+            suma = 0
+            for votacion in Voting.objects.all():
+                a = votacion
+                if(votacion.question.options.none):
+                    break
+                else:
+                    for opcion in votacion.question.options.option:
+                        suma +=1
+            mediaOpcionesPorVotacion = suma/numVotacionesTotales
+            tantoPorCienVotacionesCerradas = (numVotacionesSinEmpezar + numVotacionesSinTerminar)/numVotacionesTotales *100
+
+            context['numVotacionesTotales'] = numVotacionesTotales
+            context['numVotacionesSinEmpezar'] = numVotacionesSinEmpezar
+            context['numVotacionesSinTerminar'] = numVotacionesSinTerminar
+            context['mediaOpciones'] =mediaOpcionesPorVotacion
+            context['tantoPorCienVotacionesCerradas'] = tantoPorCienVotacionesCerradas
+
+        except:
+            raise Http404
+
+        return context
+
 
