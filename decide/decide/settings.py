@@ -149,6 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 # number of bits for the key, all auths should use the same number of bits
 KEYBITS = 256
