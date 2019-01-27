@@ -1,7 +1,9 @@
 from django.views.generic import TemplateView
 from django.http import Http404
 from voting.models import Voting
+from census.models import Census
 from base import mods
+
 
 
 class VisualizerIndex(TemplateView):
@@ -78,5 +80,62 @@ class Dashboard(TemplateView):
             raise Http404
 
         return context
+
+
+class DashboardEstadisticas(TemplateView):
+    template_name = 'visualizer/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            estadisticas = Estadisticas.getEstadisticas()
+
+            context['numVotacionesTotales'] = estadisticas[0]
+            context['numVotacionesSinEmpezar'] = estadisticas[1]
+            context['numVotacionesActivas'] = estadisticas[2]
+            context['mediaOpciones'] =estadisticas[3]
+            context['tantoPorCienVotacionesCerradas'] = estadisticas[4]
+            context['todosVotos'] = estadisticas[5]
+
+        except:
+            raise Http404
+
+        return context
+
+
+class Estadisticas():
+
+    def getEstadisticas(self):
+        estadisticas =[]
+
+        numVotacionesTotales = Voting.objects.all().count()
+        numVotacionesSinEmpezar = Voting.objects.filter(start_date=None)
+        numVotacionesActivas = numVotacionesTotales - numVotacionesSinEmpezar
+
+        suma = 0
+        for votacion in Voting.objects.all():
+            a = votacion
+            if (votacion.question.options.none):
+                break
+            else:
+                for opcion in votacion.question.options.option:
+                    suma += 1
+
+        mediaOpcionesPorVotacion = suma / numVotacionesTotales
+        tantoPorCienVotacionesCerradas = ((numVotacionesTotales - numVotacionesSinEmpezar) / numVotacionesTotales) * 100
+
+        todosVotos = Census.objects.all().count()
+
+        estadisticas.append(numVotacionesTotales) #0
+        estadisticas.append(numVotacionesSinEmpezar) #1
+        estadisticas.append(numVotacionesActivas) #2
+        estadisticas.append(mediaOpcionesPorVotacion) #3
+        estadisticas.append(tantoPorCienVotacionesCerradas) #4
+        estadisticas.append(todosVotos)  # 5
+        estadisticas.append(todosVotos)  # 6
+
+        return estadisticas
+
 
 

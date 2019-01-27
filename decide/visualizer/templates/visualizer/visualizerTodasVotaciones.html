@@ -20,8 +20,8 @@
 		<tr>
 			<td>{{votacion.id}}</td>
 			<td><a href='../mostrar/{{votacion.id}}'>{{votacion.name}}</a></td>
-            <td>{{ votacion.start_date|slice:":10" }} {{ votacion.start_date|slice:"11:19" }}</td>
-             <td> {{ votacion.end_date|slice:":10" }} {{ votacion.end_date|slice:"11:19" }}</td>
+            <td>{{ votacion.start_date|slice:":10" }}</td>
+             <td> {{ votacion.end_date|slice:":10" }} </td>
 
 		{% endfor %}
 	</tbody>

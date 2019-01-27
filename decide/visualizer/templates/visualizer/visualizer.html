@@ -40,6 +40,19 @@
           </div>
         </div>
 
+
       </section>
+
+{%if votacion.postproc is None %}
+
+{%else%}
+<h2>{% trans 'Results: ' %}</h2>
+        <ul>
+            {% for option in votacion.postproc %}
+                <li>{{option.option}}: {{option.postproc}} <span>({{option.votes}})</span></li>
+            {% endfor %}
+        </ul>
+{%endif%}
+
 
 {% endblock %}
