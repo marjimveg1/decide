@@ -11,15 +11,16 @@ from visualizer.views import Estadisticas
 class VisualizerTest(BaseTestCase):
 
     def test1(self):
-
+        pregunta = Question(desc='pregunta1', )
+        pregunta.save()
         votacion = Voting(pk=1000,
                              desc='descripcionVotacion1',
                              name='votacion1',
+                             question = pregunta,
                              start_date=timezone.now(),
                              )
         votacion.save()
-        pregunta = Question(desc='pregunta1', voting=votacion)
-        pregunta.save()
+
 
 
         resultados = Estadisticas.getEstadisticas()
