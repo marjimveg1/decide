@@ -126,7 +126,7 @@ class Estadisticas():
 
         todosVotos = Census.objects.all().count()
 
-        estadisticas.append(numVotacionesTotales[0]) #0
+        estadisticas.append(numVotacionesTotales) #0
         estadisticas.append(numVotacionesSinEmpezar) #1
         estadisticas.append(numVotacionesActivas) #2
         estadisticas.append(mediaOpcionesPorVotacion) #3
