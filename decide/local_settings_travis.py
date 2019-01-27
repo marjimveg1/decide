@@ -1,6 +1,5 @@
 ALLOWED_HOSTS = ["*"]
 
-# Modules in use, commented modules that you won't use
 MODULES = [
     'authentication',
     'base',
@@ -34,10 +33,8 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-    },
-    'mongo': {
-        'ENGINE': 'djongo',
     }
+    
 }
 
 # number of bits for the key, all auths should use the same number of bits
