@@ -3,19 +3,30 @@ language: python
 python: 
 - "3.6"
 
+services:
+- postgresql
+
 env: 
 - DJANGO=2.0 DB=postgres
 
-addons:
-  postgresql: "9.6"
+global:
+- PGPORT=5432
 
 before_install: 
 - cd decide
-- psql -c "CREATE USER decide WITH PASSWORD 'decide';" -U postgres
-- psql -c "ALTER USER decide superuser;" -U postgres
 
 install: 
 - pip3 install -r ../requirements.txt
 
+before_script:
+- cp local_settings.example.py local_settings.py
+- psql -c "create user decide with password 'decide'"
+- psql -c "create database decide owner decide"
+- python manage.py makemigrations
+- python manage.py migrate
+
 script: 
 - python3 manage.py test
+
+addons:
+postgresql: '9.6'
