@@ -12,14 +12,14 @@ class VisualizerTest(BaseTestCase):
 
     def test1(self):
 
-        self.voting = Voting(pk=1000,
+        votacion = Voting(pk=1000,
                              desc='descripcionVotacion1',
                              name='votacion1',
                              start_date=timezone.now(),
                              )
-        self.voting.save()
-        self.question = Question(desc='pregunta1', voting=self.voting)
-        self.question.save()
+        votacion.save()
+        pregunta = Question(desc='pregunta1', voting=votacion)
+        pregunta.save()
 
 
         resultados = Estadisticas.getEstadisticas()
