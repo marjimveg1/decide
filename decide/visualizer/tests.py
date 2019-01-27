@@ -24,6 +24,6 @@ class VisualizerTest(BaseTestCase):
 
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertEqual(resultados[0] ==1)
+        self.assertTrue(resultados[0] ==None)
 
 
