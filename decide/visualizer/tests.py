@@ -23,7 +23,7 @@ class VisualizerTest(BaseTestCase):
 
 
 
-        resultados = Estadisticas.getEstadisticas()
+        resultados = Estadisticas.getEstadisticas(self)
         self.assertEqual(resultados[0] ==1)
 
 
