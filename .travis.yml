@@ -12,14 +12,11 @@ env:
 global:
 - PGPORT=5432
 
-before_install: 
-- cd decide
-
 install: 
-- pip3 install -r ../requirements.txt
+- pip3 install -r requirements.txt
 
 before_script:
-- cp local_settings.example.py local_settings.py
+- cd decide
 - psql -c "create user decide with password 'decide'"
 - psql -c "create database decide owner decide"
 - python3 manage.py makemigrations
