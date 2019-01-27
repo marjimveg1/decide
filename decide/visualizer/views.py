@@ -111,7 +111,7 @@ class Estadisticas():
 
         numVotacionesTotales = Voting.objects.all().count()
         numVotacionesSinEmpezar = Voting.objects.filter(start_date=None)
-        numVotacionesActivas = numVotacionesTotales - numVotacionesSinEmpezar
+        numVotacionesActivas = Voting.objets.exclude(start_date=None)
 
         suma = 0
         for votacion in Voting.objects.all():
@@ -127,7 +127,7 @@ class Estadisticas():
 
         todosVotos = Census.objects.all().count()
 
-        estadisticas.append(numVotacionesTotales) #0
+        estadisticas.append(numVotacionesTotales[0]) #0
         estadisticas.append(numVotacionesSinEmpezar) #1
         estadisticas.append(numVotacionesActivas) #2
         estadisticas.append(mediaOpcionesPorVotacion) #3
