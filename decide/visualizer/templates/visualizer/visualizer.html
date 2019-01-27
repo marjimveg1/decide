@@ -2,52 +2,44 @@
 {% load i18n static %}
 
 {% block content %}
-    <h1>{{ votacion.id }} - {{ votacion.name }}</h1>
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+        <div class="my-auto">
+          <h2 class="mb-5">{{ votacion.name }}</h2>
 
-
-
-<div id='Descripcion'>
-    	<strong>Descripcion: </strong>{{ votacion.desc}}
-</div>
-
-<div id='Pregunta'>
-    	<strong>Pregunta: </strong>{{ votacion.question.desc}}<br>
-    <strong>Opciones: </strong>
-    <ul>
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Votación: ID {{ votacion.id }}</h3>
+				<br>
+              <div class="subheading mb-3">Descripcion:</div>
+              <p>{{ votacion.desc}}</p>
+				<div class="subheading mb-3">Pregunta:</div>
+              <p>{{ votacion.question.desc}}</p>
+				<div class="subheading mb-3">Opciones:</div>
+              <p><ul>
 	{% for option in votacion.question.options%}
 <li type="circle">{{ option.number}},{{ option.option}} </li>
         		{% endfor %}
-    </ul>
-</div>
+    </ul></p>
 
-<div id='star_date'>
-    	<strong>Fecha de inicio: </strong>{{ votacion.start_date|slice:":10" }} {{ votacion.start_date|slice:"11:19" }}
-</div>
-
-<div id='end_date'>
-    	<strong>Fecha de fin: </strong> {{ votacion.end_date|slice:":10" }} {{ votacion.end_date|slice:"11:19" }}
-</div>
-
-<div id='pub_key'>
-    	<strong>Clave publica: </strong>{{ votacion.pub_key}}
-</div>
-
-<div id='auths'>
-    	<strong>Auths: </strong>
-    <ul>
+			  <div class="subheading mb-3">Auths:</div>
+              <p><ul>
     {% for auth in votacion.auths%}
    <li type="circle"> {{ auth.name}}, {{auth.url}}</li>
     {% endfor %}
-         </ul>
-</div>
+         </ul></p>
+            </div>
 
-<div id='tally'>
-    	<strong>Tally: </strong>{{ votacion.tally}}
-</div>
 
-<div id='postproc'>
-    	<strong>Postproc: </strong>{{ votacion.postproc}}
-</div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">Fecha inicio: {{ votacion.start_date|slice:":10" }} {{ votacion.start_date|slice:"11:19" }}</span>
+            <br>
+			</div>
+			  <div class="resume-date text-md-right">
+              <span class="text-primary">Fecha fin: {{ votacion.end_date|slice:":10" }} {{ votacion.end_date|slice:"11:19" }}</span>
+            </div>
+          </div>
+        </div>
 
+      </section>
 
 {% endblock %}
