@@ -123,7 +123,6 @@ class Estadisticas():
                     suma += 1
 
         mediaOpcionesPorVotacion = suma / numVotacionesTotales
-        tantoPorCienVotacionesCerradas = ((numVotacionesTotales - numVotacionesSinEmpezar) / numVotacionesTotales) * 100
 
         todosVotos = Census.objects.all().count()
 
@@ -131,7 +130,6 @@ class Estadisticas():
         estadisticas.append(numVotacionesSinEmpezar) #1
         estadisticas.append(numVotacionesActivas) #2
         estadisticas.append(mediaOpcionesPorVotacion) #3
-        estadisticas.append(tantoPorCienVotacionesCerradas) #4
         estadisticas.append(todosVotos)  # 5
         estadisticas.append(todosVotos)  # 6
 
