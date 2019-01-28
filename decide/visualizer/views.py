@@ -6,7 +6,6 @@ from census.models import Census
 from base import mods
 import datetime
 from datetime import date
-from django.utils import timezone
 
 
 
@@ -58,7 +57,7 @@ class DashboardEstadisticas(TemplateView):
         try:
             estadisticas = Estadisticas.getEstadisticas(self)
 
-            context['<<'] = estadisticas[0]
+            context['numVotacionesTotales'] = estadisticas[0]
             context['numVotacionesSinEmpezar'] = estadisticas[1]
             context['numVotacionesActivas'] = estadisticas[2]
             context['mediaOpciones'] =estadisticas[3]
@@ -91,7 +90,7 @@ class Estadisticas():
 
 
         numVotacionesTotales = Voting.objects.all().count()
-            #Voting.objects.filter(start_date__lte=date.today()).count()
+        numVotacionesSinEmpezar = Voting.objects.filter(start_date__gte=datetime.date.today()).count()
 
         suma = 0
         for votacion in Voting.objects.all():
@@ -102,13 +101,10 @@ class Estadisticas():
                     suma += 1
 
         numVotacionesActivas = 0
-        numVotacionesSinEmpezar = 0
         for votacion in Voting.objects.all():
             hoy = datetime.date.today()
             if (str(votacion.start_date) <= str(hoy)) and (str(votacion.end_date) >= str(hoy)):
                 numVotacionesActivas +=1
-            elif (str(votacion.start_date) > str(hoy)):
-                numVotacionesSinEmpezar +=1
 
 
         votacionesEnero = Voting.objects.filter(start_date__month='01').count()
@@ -149,7 +145,7 @@ class Estadisticas():
         estadisticas.append(votacionesDiciembre) #16
 
 
-    #    numVotosVotaciones = dict()
+    #    numVotosVotaciones = {}
     #    for votacion in Voting.objects.all():
     #        idVotacion = votacion.id
     #        Vote.objects.filter(voting_id=idVotacion).count()
@@ -160,6 +156,3 @@ class Estadisticas():
 
 
         return estadisticas
-
-
-
