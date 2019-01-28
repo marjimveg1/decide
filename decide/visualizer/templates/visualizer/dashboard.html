@@ -67,22 +67,22 @@
 <script src="{% static 'js/Chart.js' %}"></script>
 <script>
 var pieData = [ {
-                    value: {{ numVotacionesSinEmpezar }},
+                    value: 1,
                     color:"#495057",
                     highlight: "#FBEEE6",
                     label: "Votaciones sin empezar"
                 },
 				{
-					value: {{ numVotacionesSinTerminar }},
+					value: 2,
 					color: "#BD5D38",
 					highlight: "#FBEEE6",
 					label: "Votaciones activas"
 				},
 				{
-					value: 1,
+					value: {{ numVotacionesTotales }},
 					color: "#868e96",
 					highlight: "#FBEEE6",
-					label: "Votaciones terminadas"
+					label: "Votaciones totales"
 				}
 			];
 	var barChartData = {
