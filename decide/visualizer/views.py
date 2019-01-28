@@ -156,3 +156,6 @@ class Estadisticas():
 
 
         return estadisticas
+
+
+    
