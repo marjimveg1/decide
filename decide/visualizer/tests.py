@@ -97,9 +97,7 @@ class VisualizerTest(BaseTestCase):
         votacion2.save()
         votacion3.save()
 
-
-
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[0] ==5)
+        self.assertTrue(resultados[0] ==4)
 
 
