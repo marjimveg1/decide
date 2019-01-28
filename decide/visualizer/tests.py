@@ -100,51 +100,49 @@ class VisualizerTest(BaseTestCase):
         resultados = Estadisticas.getEstadisticas(self)
         self.assertFalse(resultados[0] == 5)
 
-    def test_numVotacionesActivas(self):
+    def test_numVotacionesSinEmpezar(self):
         pregunta = Question(desc='pregunta1', )
         pregunta.save()
         votacion0 = Voting(pk=1000,
-                             desc='descripcionVotacion0',
-                             name='votacion0',
-                             question = pregunta,
-                             start_date=timezone.now() - datetime.timedelta(days=71),
-                            end_date=date.today() - datetime.timedelta(days=65),
-                             )
+                           desc='descripcionVotacion0',
+                           name='votacion0',
+                           question=pregunta,
+                           start_date=timezone.now() + datetime.timedelta(days=65),
+                           end_date=date.today() + datetime.timedelta(days=71),
+                           )
         votacion1 = Voting(pk=1001,
-                          desc='descripcionVotacion1',
-                          name='votacion1',
-                          question=pregunta,
-                          start_date=timezone.now(),
-                          end_date=date.today() + datetime.timedelta (days=41),
-                          )
+                           desc='descripcionVotacion1',
+                           name='votacion1',
+                           question=pregunta,
+                           start_date=timezone.now(),
+                           end_date=date.today() + datetime.timedelta(days=41),
+                           )
         votacion2 = Voting(pk=1002,
-                          desc='descripcionVotacion2',
-                          name='votacion2',
-                          question=pregunta,
-                          start_date=timezone.now() - datetime.timedelta(days=15),
-                          end_date=timezone.now() - datetime.timedelta(days=12),
-                          )
+                           desc='descripcionVotacion2',
+                           name='votacion2',
+                           question=pregunta,
+                           start_date=timezone.now() + datetime.timedelta(days=15),
+                           end_date=timezone.now() + datetime.timedelta(days=22),
+                           )
         votacion3 = Voting(pk=1003,
-                          desc='descripcionVotacion3',
-                          name='votacion3',
-                          question=pregunta,
-                          start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(days=1),
-                          )
+                           desc='descripcionVotacion3',
+                           name='votacion3',
+                           question=pregunta,
+                           start_date=timezone.now(),
+                           end_date=timezone.now() + datetime.timedelta(days=1),
+                           )
         votacion4 = Voting(pk=1004,
-                          desc='descripcionVotacion3',
-                          name='votacion4',
-                          question=pregunta,
-                          start_date=timezone.now()- datetime.timedelta(days=70),
-                          end_date=timezone.now() - datetime.timedelta(days=72),
-                          )
+                           desc='descripcionVotacion3',
+                           name='votacion4',
+                           question=pregunta,
+                           start_date=timezone.now() + datetime.timedelta(days=70),
+                           end_date=timezone.now() + datetime.timedelta(days=169),
+                           )
         votacion0.save()
         votacion1.save()
         votacion2.save()
         votacion3.save()
         votacion4.save()
 
-
-
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[2] == 2)
+        self.assertTrue(resultados[1] == 3)
