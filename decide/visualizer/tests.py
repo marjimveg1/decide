@@ -145,7 +145,7 @@ class VisualizerTest(BaseTestCase):
         votacion4.save()
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[1] == 3)
+        self.assertTrue(resultados[1] == 5)
 
     def test_numVotacionesSinEmpezar_falso(self):
         pregunta = Question(desc='pregunta1', )
@@ -192,7 +192,7 @@ class VisualizerTest(BaseTestCase):
         votacion4.save()
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertFalse(resultados[1] == 5)
+        self.assertFalse(resultados[1] == 3)
 
     def test_numVotacionesActivas(self):
         pregunta = Question(desc='pregunta1', )
@@ -201,22 +201,21 @@ class VisualizerTest(BaseTestCase):
                              desc='descripcionVotacion0',
                              name='votacion0',
                              question = pregunta,
-                             start_date=timezone.now() - datetime.timedelta(days=71),
-                            end_date=date.today() - datetime.timedelta(days=65),
+                             start_date=timezone.now() + datetime.timedelta(days=65),
                              )
         votacion1 = Voting(pk=1001,
                           desc='descripcionVotacion1',
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=date.today() + datetime.timedelta (days=41),
+                          end_date=date.today() +datetime.timedelta (days=41),
                           )
         votacion2 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
-                          start_date=timezone.now() - datetime.timedelta(days=15),
-                          end_date=timezone.now() - datetime.timedelta(days=12),
+                          start_date=timezone.now(),
+                          end_date=timezone.now() + datetime.timedelta(days=22),
                           )
         votacion3 = Voting(pk=1003,
                           desc='descripcionVotacion3',
@@ -229,8 +228,8 @@ class VisualizerTest(BaseTestCase):
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
-                          start_date=timezone.now()- datetime.timedelta(days=70),
-                          end_date=timezone.now() - datetime.timedelta(days=72),
+                          start_date=timezone.now(),
+                          end_date=timezone.now() + datetime.timedelta(days=169),
                           )
         votacion0.save()
         votacion1.save()
@@ -241,7 +240,7 @@ class VisualizerTest(BaseTestCase):
 
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[2] == 2)
+        self.assertTrue(resultados[0] ==5)
 
     def test_numVotacionesActivas_falso(self):
         pregunta = Question(desc='pregunta1', )
