@@ -39,43 +39,6 @@ class VisualizerTodasVotaciones(TemplateView):
         try:
             todasVotaciones = Voting.objects.all()
             context['votaciones'] = todasVotaciones
-
-        except:
-            raise Http404
-
-        return context
-
-
-class Dashboard(TemplateView):
-    template_name = 'visualizer/dashboard.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        try:
-            numVotacionesTotales = Voting.objects.all().count()
-            numVotacionesSinEmpezar = Voting.objects.filter(start_date=None).count()
-            numVotacionesSinTerminar = Voting.objects.filter(end_date=None).count()
-            numVotacionesSinTerminar = Voting.objects.filter(end_date=None).count()
-
-
-            suma = 0
-            for votacion in Voting.objects.all():
-                a = votacion
-                if(votacion.question.options.none):
-                    break
-                else:
-                    for opcion in votacion.question.options.option:
-                        suma +=1
-            mediaOpcionesPorVotacion = suma/numVotacionesTotales
-            tantoPorCienVotacionesCerradas = (numVotacionesSinEmpezar + numVotacionesSinTerminar)/numVotacionesTotales *100
-
-            context['numVotacionesTotales'] = numVotacionesTotales
-            context['numVotacionesSinEmpezar'] = numVotacionesSinEmpezar
-            context['numVotacionesSinTerminar'] = numVotacionesSinTerminar
-            context['mediaOpciones'] =mediaOpcionesPorVotacion
-            context['tantoPorCienVotacionesCerradas'] = tantoPorCienVotacionesCerradas
-
         except:
             raise Http404
 
@@ -89,7 +52,7 @@ class DashboardEstadisticas(TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
-            estadisticas = Estadisticas.getEstadisticas()
+            estadisticas = Estadisticas.getEstadisticas(self)
 
             context['numVotacionesTotales'] = estadisticas[0]
             context['numVotacionesSinEmpezar'] = estadisticas[1]
@@ -134,18 +97,18 @@ class Estadisticas():
                 for opcion in votacion.question.options.option:
                     suma += 1
 
-        votacionesEnero = Voting.objects.filter(start_date__month=1)
-        votacionesFebrero = Voting.objects.filter(start_date__month=2)
-        votacionesMarzo = Voting.objects.filter(start_date__month=3)
-        votacionesAbril = Voting.objects.filter(start_date__month=4)
-        votacionesMayo = Voting.objects.filter(start_date__month=5)
-        votacionesJunio = Voting.objects.filter(start_date__month=6)
-        votacionesJulio = Voting.objects.filter(start_date__month=7)
-        votacionesAgosto = Voting.objects.filter(start_date__month=8)
-        votacionesSeptiembre = Voting.objects.filter(start_date__month=9)
-        votacionesOctubre = Voting.objects.filter(start_date__month=10)
-        votacionesNoviembre = Voting.objects.filter(start_date__month=11)
-        votacionesDiciembre = Voting.objects.filter(start_date__month=12)
+        votacionesEnero = Voting.objects.filter(start_date__month='01').count()
+        votacionesFebrero = Voting.objects.filter(start_date__month='02').count()
+        votacionesMarzo = Voting.objects.filter(start_date__month='03').count()
+        votacionesAbril = Voting.objects.filter(start_date__month='04').count()
+        votacionesMayo = Voting.objects.filter(start_date__month='05').count()
+        votacionesJunio = Voting.objects.filter(start_date__month='06').count()
+        votacionesJulio = Voting.objects.filter(start_date__month='07').count()
+        votacionesAgosto = Voting.objects.filter(start_date__month='08').count()
+        votacionesSeptiembre = Voting.objects.filter(start_date__month='09').count()
+        votacionesOctubre = Voting.objects.filter(start_date__month='10').count()
+        votacionesNoviembre = Voting.objects.filter(start_date__month='11').count()
+        votacionesDiciembre = Voting.objects.filter(start_date__month='12').count()
 
 
 
