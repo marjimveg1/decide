@@ -2,8 +2,7 @@
 {% load i18n static %}
 
 {% block content %}
-{{ numVotacionesSinEmpezar }}1
-{{ numVotacionesActivas }}2
+
 <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
         <div class="my-auto">
           <h2 class="mb-5">Estadísticas de las votaciones</h2>
@@ -15,7 +14,7 @@
                 <div class="subheading mb-2"><a href="#meses">Votaciones por meses</a></div>
             </li>
               <li>
-                <div class="subheading mb-2"><a href="#votos">Votos cada mes</a></div>
+                <div class="subheading mb-2"><a href="#votos">Votaciones por meses</a></div>
             </li>
           </ul>
         </div>
@@ -54,8 +53,8 @@
 
 <section class="resume-section p-3 p-lg-5 d-flex d-column" id="votos">
         <div class="my-auto">
-          <h1 class="mb-0">Votos
-            <span class="text-primary">cada mes</span>
+          <h1 class="mb-0">Votaciones
+            <span class="text-primary">por meses</span>
           </h1>
             <br>
             <br>
@@ -105,7 +104,9 @@ var pieData = [ {
 		]
 	}
 		var lineChartData = {
-			labels : ["Octubre","Noviembre","Diciembre","Enero"],
+			labels : ["Enero", "Febrero", "Marzo" , "Abril",
+		 "Mayo", "Junio", "Julio","Agosto",
+		 "Septiembre", "Octubre","Noviembre","Diciembre"],
 			datasets : [
 				{
 					label: "Datos",
@@ -115,7 +116,10 @@ var pieData = [ {
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [90,30,10,80]
+					data : [ {{ votacionesEnero }}, {{ votacionesFebrero }}, {{ votacionesMarzo }}, {{ votacionesAbril }},
+				{{ votacionesMayo }} ,{{ votacionesJunio }},{{ votacionesJulio }},{{ votacionesAgosto }},
+				{{ votacionesSeptiembre }},{{ votacionesOctubre }},{{ votacionesNoviembre }},{{ votacionesDiciembre }}
+				]
 				}
 			]
 		}
