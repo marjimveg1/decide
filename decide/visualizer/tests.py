@@ -27,7 +27,7 @@ class VisualizerTest(BaseTestCase):
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=date.today() +datetime.timedelta (days=65)
+                          end_date=date.today() +datetime.timedelta (days=65),
                           )
         votacion = Voting(pk=1002,
                           desc='descripcionVotacion2',
@@ -35,7 +35,7 @@ class VisualizerTest(BaseTestCase):
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=65),
-             months=2             )
+                          )
         votacion = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
@@ -65,28 +65,28 @@ class VisualizerTest(BaseTestCase):
                              name='votacion1',
                              question = pregunta,
                              start_date=timezone.now() ,
-                             end_date=timezone.now()+ datetime.timedelta(months=2),
+                             end_date=timezone.now()+ datetime.timedelta(days=2),
                              )
         votacion = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(months=5),
+                          end_date=timezone.now() + datetime.timedelta(days=5),
                           )
         votacion = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(months=2),
+                          end_date=timezone.now() + datetime.timedelta(days=2),
                           )
         votacion = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(months =8),
+                          end_date=timezone.now() + datetime.timedelta(days =8),
                           )
         votacion.save()
 
