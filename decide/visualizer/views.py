@@ -6,6 +6,7 @@ from census.models import Census
 from base import mods
 import datetime
 from datetime import date
+from django.utils import timezone
 
 
 
@@ -57,7 +58,7 @@ class DashboardEstadisticas(TemplateView):
         try:
             estadisticas = Estadisticas.getEstadisticas(self)
 
-            context['numVotacionesTotales'] = estadisticas[0]
+            context['<<'] = estadisticas[0]
             context['numVotacionesSinEmpezar'] = estadisticas[1]
             context['numVotacionesActivas'] = estadisticas[2]
             context['mediaOpciones'] =estadisticas[3]
@@ -148,7 +149,7 @@ class Estadisticas():
         estadisticas.append(votacionesDiciembre) #16
 
 
-    #    numVotosVotaciones = {}
+    #    numVotosVotaciones = dict()
     #    for votacion in Voting.objects.all():
     #        idVotacion = votacion.id
     #        Vote.objects.filter(voting_id=idVotacion).count()
