@@ -90,7 +90,7 @@ class Estadisticas():
 
 
         numVotacionesTotales = Voting.objects.all().count()
-        numVotacionesSinEmpezar = Voting.objects.exclude(start_date__lte=datetime.date.today()).count()
+        numVotacionesSinEmpezar = Voting.objects.filter(start_date__lte=date.today()).count()
 
         suma = 0
         for votacion in Voting.objects.all():
