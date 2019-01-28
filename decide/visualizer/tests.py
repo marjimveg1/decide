@@ -7,6 +7,7 @@ from voting.models import Voting, Question
 from django.utils import timezone
 from visualizer.views import Estadisticas
 import datetime
+from datetime import date
 
 class VisualizerTest(BaseTestCase):
 
@@ -17,14 +18,14 @@ class VisualizerTest(BaseTestCase):
                              desc='descripcionVotacion0',
                              name='votacion0',
                              question = pregunta,
-                             start_date=timezone.now() + datetime.timedelta(days=1),
+                             start_date=timezone.now() + datetime.timedelta(days=65),
                              )
         votacion = Voting(pk=1001,
                           desc='descripcionVotacion1',
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(months=2),
+                          end_date=date.today() +datetime.timedelta (months=1)
                           )
         votacion = Voting(pk=1002,
                           desc='descripcionVotacion2',
@@ -83,7 +84,7 @@ class VisualizerTest(BaseTestCase):
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(months=8),
+                          end_date=timezone.now() + datetime.timedelta(months =8),
                           )
         votacion.save()
 
