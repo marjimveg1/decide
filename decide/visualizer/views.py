@@ -1,8 +1,11 @@
 from django.views.generic import TemplateView
 from django.http import Http404
 from voting.models import Voting
+from store.models import Vote
 from census.models import Census
 from base import mods
+import datetime
+from datetime import date
 
 
 
@@ -85,9 +88,9 @@ class Estadisticas():
     def getEstadisticas(self):
         estadisticas =[]
 
+
         numVotacionesTotales = Voting.objects.all().count()
-        numVotacionesSinEmpezar = Voting.objects.filter(start_date=None).count()
-        numVotacionesActivas = Voting.objects.exclude(start_date=None).count()
+        numVotacionesSinEmpezar = Voting.objects.filter(start_date__gte=datetime.date.today()).count()
 
         suma = 0
         for votacion in Voting.objects.all():
@@ -96,6 +99,13 @@ class Estadisticas():
             else:
                 for opcion in votacion.question.options.option:
                     suma += 1
+
+        numVotacionesActivas = 0
+        for votacion in Voting.objects.all():
+            hoy = datetime.date.today()
+            if (str(votacion.start_date) <= str(hoy)) and (str(votacion.end_date) >= str(hoy)):
+                numVotacionesActivas +=1
+
 
         votacionesEnero = Voting.objects.filter(start_date__month='01').count()
         votacionesFebrero = Voting.objects.filter(start_date__month='02').count()
@@ -113,7 +123,6 @@ class Estadisticas():
 
 
         mediaOpcionesPorVotacion = suma / numVotacionesTotales
-
         todosVotos = Census.objects.all().count()
 
         estadisticas.append(numVotacionesTotales)  #0
@@ -121,7 +130,6 @@ class Estadisticas():
         estadisticas.append(numVotacionesActivas) #2
         estadisticas.append(mediaOpcionesPorVotacion) #3
         estadisticas.append(todosVotos)  # 4
-
         #Añadiendo estadísticas votaciones por meses
         estadisticas.append(votacionesEnero) #5
         estadisticas.append(votacionesFebrero) #6
@@ -135,6 +143,17 @@ class Estadisticas():
         estadisticas.append(votacionesOctubre) #14
         estadisticas.append(votacionesNoviembre) #15
         estadisticas.append(votacionesDiciembre) #16
+
+
+    #    numVotosVotaciones = {}
+    #    for votacion in Voting.objects.all():
+    #        idVotacion = votacion.id
+    #        Vote.objects.filter(voting_id=idVotacion).count()
+
+
+
+
+
 
         return estadisticas
 
