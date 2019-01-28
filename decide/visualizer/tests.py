@@ -12,7 +12,6 @@ from datetime import date
 #Para poder usar months en lugar de days debe ser una versión superior que no es compatible
 
 class VisualizerTest(BaseTestCase):
-    hoy = datetime.date.today()
 
     def test_num_votaciones_totales(self):
         pregunta = Question(desc='pregunta1', )
@@ -21,35 +20,35 @@ class VisualizerTest(BaseTestCase):
                              desc='descripcionVotacion0',
                              name='votacion0',
                              question = pregunta,
-                             start_date= datetime.date.today() + datetime.timedelta(days=65),
+                             start_date= datetime.now() + datetime.timedelta(days=65),
                              )
         votacion1 = Voting(pk=1001,
                           desc='descripcionVotacion1',
                           name='votacion1',
                           question=pregunta,
-                          start_date= datetime.date.today(),
+                          start_date= datetime.now(),
                           end_date=date.today() +datetime.timedelta (days=41),
                           )
         votacion2 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
-                          start_date= datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days=22),
+                          start_date=datetime.now(),
+                          end_date= datetime.now() + datetime.timedelta(days=22),
                           )
         votacion3 = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
-                          start_date= datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days=1),
+                          start_date= datetime.now(),
+                          end_date= datetime.now() + datetime.timedelta(days=1),
                           )
         votacion4 = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
-                          start_date=datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days=169),
+                          start_date=datetime.now(),
+                          end_date= datetime.now() + datetime.timedelta(days=169),
                           )
         votacion0.save()
         votacion1.save()
@@ -69,29 +68,29 @@ class VisualizerTest(BaseTestCase):
                              desc='descripcionVotacion1',
                              name='votacion1',
                              question = pregunta,
-                             start_date= datetime.date.today() ,
-                             end_date= datetime.date.today()+ datetime.timedelta(days=2),
+                             start_date= datetime.now() ,
+                             end_date= datetime.now()+ datetime.timedelta(days=2),
                              )
         votacion1 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
-                          start_date= datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days=5),
+                          start_date= datetime.now(),
+                          end_date= datetime.now() + datetime.timedelta(days=5),
                           )
         votacion2 = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
-                          start_date= datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days=2),
+                          start_date= datetime.now(),
+                          end_date=datetime.now() + datetime.timedelta(days=2),
                           )
         votacion3 = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
-                          start_date= datetime.date.today(),
-                          end_date= datetime.date.today() + datetime.timedelta(days =8),
+                          start_date= datetime.now(),
+                          end_date= datetime.now()+ datetime.timedelta(days =8),
                           )
         votacion0.save()
         votacion1.save()
@@ -108,36 +107,36 @@ class VisualizerTest(BaseTestCase):
                            desc='descripcionVotacion0',
                            name='votacion0',
                            question=pregunta,
-                           start_date= datetime.date.today()+ datetime.timedelta(days=65),
+                           start_date= datetime.now()+ datetime.timedelta(days=65),
                            end_date=date.today() + datetime.timedelta(days=71),
                            )
         votacion1 = Voting(pk=1001,
                            desc='descripcionVotacion1',
                            name='votacion1',
                            question=pregunta,
-                           start_date= datetime.date.today(),
+                           start_date= datetime.now(),
                            end_date=date.today() + datetime.timedelta(days=41),
                            )
         votacion2 = Voting(pk=1002,
                            desc='descripcionVotacion2',
                            name='votacion2',
                            question=pregunta,
-                           start_date= datetime.date.today() + datetime.timedelta(days=15),
-                           end_date= datetime.date.today()+ datetime.timedelta(days=22),
+                           start_date= datetime.now() + datetime.timedelta(days=15),
+                           end_date= datetime.now()+ datetime.timedelta(days=22),
                            )
         votacion3 = Voting(pk=1003,
                            desc='descripcionVotacion3',
                            name='votacion3',
                            question=pregunta,
-                           start_date= datetime.date.today(),
-                           end_date= datetime.date.today()+ datetime.timedelta(days=1),
+                           start_date= datetime.now(),
+                           end_date= datetime.now()+ datetime.timedelta(days=1),
                            )
         votacion4 = Voting(pk=1004,
                            desc='descripcionVotacion3',
                            name='votacion4',
                            question=pregunta,
-                           start_date= datetime.date.today() + datetime.timedelta(days=70),
-                           end_date= datetime.date.today() + datetime.timedelta(days=169),
+                           start_date= datetime.now() + datetime.timedelta(days=70),
+                           end_date= datetime.now() + datetime.timedelta(days=169),
                            )
         votacion0.save()
         votacion1.save()
