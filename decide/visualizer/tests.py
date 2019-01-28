@@ -16,41 +16,45 @@ class VisualizerTest(BaseTestCase):
     def test_num_votaciones_totales(self):
         pregunta = Question(desc='pregunta1', )
         pregunta.save()
-        votacion = Voting(pk=1000,
+        votacion0 = Voting(pk=1000,
                              desc='descripcionVotacion0',
                              name='votacion0',
                              question = pregunta,
                              start_date=timezone.now() + datetime.timedelta(days=65),
                              )
-        votacion = Voting(pk=1001,
+        votacion1 = Voting(pk=1001,
                           desc='descripcionVotacion1',
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=date.today() +datetime.timedelta (days=65),
                           )
-        votacion = Voting(pk=1002,
+        votacion2 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=65),
                           )
-        votacion = Voting(pk=1003,
+        votacion3 = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=65),
                           )
-        votacion = Voting(pk=1004,
+        votacion4 = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=65),
                           )
-        votacion.save()
+        votacion0.save()
+        votacion1.save()
+        votacion2.save()
+        votacion3.save()
+        votacion4.save()
 
 
 
@@ -60,35 +64,38 @@ class VisualizerTest(BaseTestCase):
     def test_num_votaciones_sinEmpezar(self):
         pregunta = Question(desc='pregunta1', )
         pregunta.save()
-        votacion = Voting(pk=1001,
+        votacion0 = Voting(pk=1001,
                              desc='descripcionVotacion1',
                              name='votacion1',
                              question = pregunta,
                              start_date=timezone.now() ,
                              end_date=timezone.now()+ datetime.timedelta(days=2),
                              )
-        votacion = Voting(pk=1002,
+        votacion1 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=5),
                           )
-        votacion = Voting(pk=1003,
+        votacion2 = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days=2),
                           )
-        votacion = Voting(pk=1004,
+        votacion3 = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
                           end_date=timezone.now() + datetime.timedelta(days =8),
                           )
-        votacion.save()
+        votacion0.save()
+        votacion1.save()
+        votacion2.save()
+        votacion3.save()
 
 
 
