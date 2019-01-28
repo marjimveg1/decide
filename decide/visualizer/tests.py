@@ -24,28 +24,28 @@ class VisualizerTest(BaseTestCase):
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=2),
+                          end_date=timezone.now() + datetime.timedelta(months=2),
                           )
         votacion = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=5),
+                          end_date=timezone.now() + datetime.timedelta(months=5),
                           )
         votacion = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=2),
+                          end_date=timezone.now() + datetime.timedelta(months=2),
                           )
         votacion = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=8),
+                          end_date=timezone.now() + datetime.timedelta(months=8),
                           )
         votacion.save()
 
@@ -62,28 +62,28 @@ class VisualizerTest(BaseTestCase):
                              name='votacion1',
                              question = pregunta,
                              start_date=timezone.now() ,
-                             end_date=timezone.now()+ datetime.timedelta(month=2),
+                             end_date=timezone.now()+ datetime.timedelta(months=2),
                              )
         votacion = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=5),
+                          end_date=timezone.now() + datetime.timedelta(months=5),
                           )
         votacion = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=2),
+                          end_date=timezone.now() + datetime.timedelta(months=2),
                           )
         votacion = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(month=8),
+                          end_date=timezone.now() + datetime.timedelta(months=8),
                           )
         votacion.save()
 
