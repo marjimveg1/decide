@@ -27,28 +27,28 @@ class VisualizerTest(BaseTestCase):
                           name='votacion1',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=date.today() +datetime.timedelta (days=65),
+                          end_date=date.today() +datetime.timedelta (days=41),
                           )
         votacion2 = Voting(pk=1002,
                           desc='descripcionVotacion2',
                           name='votacion2',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(days=65),
+                          end_date=timezone.now() + datetime.timedelta(days=22),
                           )
         votacion3 = Voting(pk=1003,
                           desc='descripcionVotacion3',
                           name='votacion3',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(days=65),
+                          end_date=timezone.now() + datetime.timedelta(days=1),
                           )
         votacion4 = Voting(pk=1004,
                           desc='descripcionVotacion3',
                           name='votacion4',
                           question=pregunta,
                           start_date=timezone.now(),
-                          end_date=timezone.now() + datetime.timedelta(days=65),
+                          end_date=timezone.now() + datetime.timedelta(days=169),
                           )
         votacion0.save()
         votacion1.save()
@@ -61,7 +61,7 @@ class VisualizerTest(BaseTestCase):
         resultados = Estadisticas.getEstadisticas(self)
         self.assertTrue(resultados[0] ==5)
 
-    def test_num_votaciones_sinEmpezar(self):
+    def test_num_votaciones_totales_falso(self):
         pregunta = Question(desc='pregunta1', )
         pregunta.save()
         votacion0 = Voting(pk=1001,
@@ -98,6 +98,6 @@ class VisualizerTest(BaseTestCase):
         votacion3.save()
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[0] ==4)
+        self.assertFalse(resultados[0] == 5)
 
 
