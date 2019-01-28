@@ -90,7 +90,7 @@ class Estadisticas():
 
 
         numVotacionesTotales = Voting.objects.all().count()
-        numVotacionesSinEmpezar = Voting.objects.filter(start_date__lte=date.today()).count()
+            #Voting.objects.filter(start_date__lte=date.today()).count()
 
         suma = 0
         for votacion in Voting.objects.all():
@@ -101,10 +101,13 @@ class Estadisticas():
                     suma += 1
 
         numVotacionesActivas = 0
+        numVotacionesSinEmpezar = 0
         for votacion in Voting.objects.all():
             hoy = datetime.date.today()
             if (str(votacion.start_date) <= str(hoy)) and (str(votacion.end_date) >= str(hoy)):
                 numVotacionesActivas +=1
+            elif (str(votacion.start_date) > str(hoy)):
+                numVotacionesSinEmpezar +=1
 
 
         votacionesEnero = Voting.objects.filter(start_date__month='01').count()
