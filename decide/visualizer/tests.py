@@ -145,4 +145,4 @@ class VisualizerTest(BaseTestCase):
         votacion4.save()
 
         resultados = Estadisticas.getEstadisticas(self)
-        self.assertTrue(resultados[1] == 3)
+        self.assertTrue(resultados[1] == 2)
