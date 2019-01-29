@@ -5,7 +5,6 @@ from store.models import Vote
 from census.models import Census
 from base import mods
 import datetime
-from datetime import date
 
 
 
@@ -78,7 +77,7 @@ class DashboardEstadisticas(TemplateView):
             context['votacionesDiciembre'] = estadisticas[16]
 
         except:
-            raise Http404
+            context = super().get_context_data(**kwargs)
 
         return context
 
@@ -143,16 +142,6 @@ class Estadisticas():
         estadisticas.append(votacionesOctubre) #14
         estadisticas.append(votacionesNoviembre) #15
         estadisticas.append(votacionesDiciembre) #16
-
-
-    #    numVotosVotaciones = {}
-    #    for votacion in Voting.objects.all():
-    #        idVotacion = votacion.id
-    #        Vote.objects.filter(voting_id=idVotacion).count()
-
-
-
-
 
 
         return estadisticas
