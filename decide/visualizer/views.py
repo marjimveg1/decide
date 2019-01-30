@@ -7,7 +7,6 @@ from base import mods
 import datetime
 
 
-
 class VisualizerIndex(TemplateView):
     template_name = 'visualizer/visualizerIndex.html'
 
