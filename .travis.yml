@@ -24,26 +24,6 @@ before_script:
 
 script: 
 - python3 manage.py test
-- if [[ $TRAVIS_BRANCH == $RAMA_TRAVIS ]] && [[ $DEPLOY_TRAVIS == "1" ]];   
-      then git archive --format zip --output ./$NOMBRE_ZIP.zip $RAMA_TRAVIS; 
-      echo "Zip generado correctamente."; 
- fi
- 
- before_deploy:
-- git config --local user.name $USER_TRAVIS
-- git config --local user.email $EMAIL_TRAVIS
-- git tag -a $GIT_TAG -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-
-deploy:
-  provider: releases
-  api-key:
-    secure: $TOKEN_TRAVIS
-  file: "./$NOMBRE_ZIP.zip"
-  skip_cleanup: true
-  on:
-    branch: $RAMA_TRAVIS
-    condition: $DEPLOY_TRAVIS = 1
-tags: false
 
 addons:
 postgresql: '9.6'
