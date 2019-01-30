@@ -118,8 +118,6 @@ class Estadisticas():
         votacionesNoviembre = Voting.objects.filter(start_date__month='11').count()
         votacionesDiciembre = Voting.objects.filter(start_date__month='12').count()
 
-
-
         mediaOpcionesPorVotacion = suma / numVotacionesTotales
         todosVotos = Census.objects.all().count()
 
@@ -141,7 +139,6 @@ class Estadisticas():
         estadisticas.append(votacionesOctubre) #14
         estadisticas.append(votacionesNoviembre) #15
         estadisticas.append(votacionesDiciembre) #16
-
 
         return estadisticas
 
