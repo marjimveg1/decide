@@ -33,7 +33,17 @@ before_deploy:
 - export GIT_TAG=v$MILESTONE_TRAVIS.0.$TRAVIS_BUILD_NUMBER
 - git tag -a $GIT_TAG -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
 
-
+deploy:
+  provider: releases
+  apy-key:
+    secure: 9c5ea2ed3521b08c5ccd55a300048776e3f3655b
+  file: "./decide.zip"
+  skip_cleanup: ture
+  on:
+    branch:master
+    condition: $DEPLOY_TRAVIS = 1
+    tags: false
+    
 
 addons:
 postgresql: '9.6'
