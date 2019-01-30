@@ -24,14 +24,16 @@ before_script:
 
 script: 
 - python3 manage.py test 
-- if [[ $TRAVIS_BRANCH == $RAMA_TRAVIS ]] && [[ $DEPLOY_TRAVIS == "1" ]]; then git archive --format zip --output ./$NOMBRE_ZIP.zip $RAMA_TRAVIS; echo "Zip generado correctamente."; fi
+- if [[ $TRAVIS_BRANCH == master ]] && [[ $DEPLOY_TRAVIS == "1" ]]; then git archive --format zip --output ./decide.zip master; echo "Zip generado correctamente."; fi
 
 before_deploy:
-- git config --local user.name $USER_TRAVIS
-- git config --local user.email $EMAIL_TRAVIS
+- git config --local user.name marjimveg1
+- git config --local user.email maria-2696@hotmail.com
 - export YEAR=`date +"%Y"`  
-- export GIT_TAG=v$MILESTONE_TRAVIS.0.$TRAVIS_BUILD_NUMBER-$YEAR
+- export GIT_TAG=v$MILESTONE_TRAVIS.0.$TRAVIS_BUILD_NUMBER
 - git tag -a $GIT_TAG -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+
+
 
 addons:
 postgresql: '9.6'
