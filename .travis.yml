@@ -1,29 +1,48 @@
-language: python 
+language: python
 
-python: 
-- "3.6"
+python:
+  - 3.6
+
+sudo: required
+dist: trusty
+addons:
+  postgresql: "9.6"
 
 services:
-- postgresql
+  - postgresql
 
-env: 
-- DJANGO=2.0 DB=postgres
+env:
+  - DJANGO_SETTINGS_MODULE="decide.settings"
 
-global:
-- PGPORT=5432
-
-install: 
-- pip3 install -r requirements.txt
+install:
+  - pip install -r requirements.txt
 
 before_script:
-- cd decide
-- psql -c "create user decide with password 'decide'"
-- psql -c "create database decide owner decide"
-- python3 manage.py makemigrations
-- python3 manage.py migrate
+  - psql -c "create user decide with password 'decide'" -U postgres
+  - psql -c "create database decide owner decide" -U postgres
 
-script: 
-- python3 manage.py test 
+script:
+  - python ./decide/manage.py makemigrations
+  - python ./decide/manage.py migrate
+#  - python ./decide/manage.py compilemessages
+  - python ./decide/manage.py test ./decide
+  - if [[ $TRAVIS_BRANCH == $RAMA_TRAVIS ]] && [[ $DEPLOY_TRAVIS == "1" ]]; then git archive --format zip --output ./$NOMBRE_ZIP.zip $RAMA_TRAVIS; echo "Zip generado correctamente."; fi
 
-addons:
-postgresql: '9.6'
+before_deploy:
+- git config --local user.name $USER_TRAVIS
+- git config --local user.email $EMAIL_TRAVIS
+- git tag -a $GIT_TAG -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+
+deploy:
+  provider: releases
+  api-key:
+    secure: $TOKEN_TRAVIS
+  file: "./$NOMBRE_ZIP.zip"
+  skip_cleanup: true
+  on:
+    branch: $RAMA_TRAVIS
+    condition: $DEPLOY_TRAVIS = 1
+    tags: false
+
+notifications:
+  email: false
